@@ -10,7 +10,7 @@ export default function RegularView() {
     <div>
       <lr-config
         ctx-name="my-uploader"
-        pubkey="2b7f257e8ea0817ba746"
+        pubkey={import.meta.env.VITE_UPLOADCARE_PUB_KEY}
         sourceList="local, url, camera, dropbox"
       ></lr-config>
       <lr-file-uploader-regular

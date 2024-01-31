@@ -92,6 +92,11 @@ export default function FileUploader({ files, uploaderClassName, onChange, theme
     };
   }, [files, onChange, uploadedFiles, setUploadedFiles]);
 
+  const dataOutput = document.querySelector('lr-data-output');
+  dataOutput?.addEventListener('lr-data-output', (e : DataOutput) => {
+    console.log(e.detail);
+  });
+
   return (
     <div className={st.root}>
       {/*
@@ -108,7 +113,7 @@ export default function FileUploader({ files, uploaderClassName, onChange, theme
       */}
       <lr-config
         ctx-name="my-uploader"
-        pubkey="2b7f257e8ea0817ba746"
+        pubkey={import.meta.env.VITE_UPLOADCARE_PUB_KEY}
         multiple={true}
         sourceList="local, url, camera, dropbox, gdrive"
         confirmUpload={false}
@@ -126,6 +131,14 @@ export default function FileUploader({ files, uploaderClassName, onChange, theme
         ctx-name="my-uploader"
         ref={ctxProviderRef}
       />
+
+      <lr-data-output
+        ctx-name="my-uploader"
+        use-console
+        use-input
+        use-group
+        use-event
+      ></lr-data-output>
 
       <div className={st.previews}>
         {files.map((file) => (
